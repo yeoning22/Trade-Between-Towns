@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Scroll, Coins, Map, User } from 'lucide-react';
+import { Banknote, Coins, Map, User } from 'lucide-react';
+import bg from "./assets/temp_bg_test.png";
+
 
 export default function MerchantGame() {
   const [screen, setScreen] = useState('start'); // start, newGame, continue, howToPlay
@@ -31,10 +33,19 @@ export default function MerchantGame() {
   ];
 
   const StartScreen = () => (
-    <div className="min-h-screen bg-gradient-to-b from-amber-900 via-amber-800 to-amber-950 flex items-center justify-center p-4">
+    <div
+  className="min-h-screen bg-cover bg-center relative"
+  style={{ backgroundImage: `url(${bg})` }}
+>
+  {/* 어둡게 오버레이 */}
+  <div className="absolute inset-0 bg-black/60" />
+
+  {/* 기존 UI 래퍼 */}
+  <div className="relative z-10 flex items-center justify-center p-4 min-h-screen">
+
       <div className="text-center space-y-8 max-w-2xl">
         <div className="space-y-4">
-          <Scroll className="w-20 h-20 mx-auto text-amber-300 animate-pulse" />
+          <Banknote className="w-20 h-20 mx-auto text-amber-300 animate-pulse"/>
           <h1 className="text-5xl font-bold text-amber-100 tracking-wide">
             행상인의 길
           </h1>
@@ -43,40 +54,41 @@ export default function MerchantGame() {
           </p>
         </div>
 
-        <div className="space-y-4 pt-8">
-          <button
-            onClick={() => setScreen('newGame')}
-            className="w-full max-w-md mx-auto block bg-amber-600 hover:bg-amber-500 text-white font-bold py-4 px-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-200"
-          >
-            <User className="inline mr-2" />
-            새로운 여정 시작
-          </button>
-          
-          <button
-            className="w-full max-w-md mx-auto block bg-amber-700 hover:bg-amber-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-200 opacity-50 cursor-not-allowed"
-            disabled
-          >
-            <Map className="inline mr-2" />
-            여정 이어가기 (준비중)
-          </button>
+          <div className="space-y-4 pt-8">
+            <button
+              onClick={() => setScreen('newGame')}
+              className="w-full max-w-md mx-auto block bg-amber-600 hover:bg-amber-500 text-white font-bold py-4 px-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-200"
+            >
+              <User className="inline mr-2" />
+              새로운 여정 시작
+            </button>
+            
+            <button
+              className="w-full max-w-md mx-auto block bg-amber-700 hover:bg-amber-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-200 opacity-50 cursor-not-allowed"
+              disabled
+            >
+              <Map className="inline mr-2" />
+              여정 이어가기 (준비중)
+            </button>
 
-          <button
-            onClick={() => setScreen('howToPlay')}
-            className="w-full max-w-md mx-auto block bg-amber-800 hover:bg-amber-700 text-amber-200 font-bold py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-200"
-          >
-            게임 방법
-          </button>
-        </div>
+            <button
+              onClick={() => setScreen('howToPlay')}
+              className="w-full max-w-md mx-auto block bg-amber-800 hover:bg-amber-700 text-amber-200 font-bold py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-200"
+            >
+              게임 방법
+            </button>
+          </div>
 
-        <div className="text-amber-400 text-sm pt-8">
-          <p className="flex items-center justify-center gap-2">
-            v0.1.0 Alpha | Made by yeoning 
-            <img 
-              src="https://i.ibb.co/Cs0ppFz1/Idle-Cat.gif" 
-              alt="yeoning logo" 
-              className="inline-block w-4 h-4"
-            />
-          </p>
+          <div className="text-amber-400 text-sm pt-8">
+            <p className="flex items-center justify-center gap-2">
+              v0.1.0 Alpha | Made by yeoning 
+              <img 
+                src="https://i.ibb.co/Cs0ppFz1/Idle-Cat.gif" 
+                alt="yeoning logo" 
+                className="inline-block w-4 h-4"
+              />
+            </p>
+          </div>
         </div>
       </div>
     </div>
